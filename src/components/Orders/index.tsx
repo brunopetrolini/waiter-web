@@ -1,64 +1,45 @@
-import { Board, Container, OrdersContainer } from './styles';
+import { OrdersBoard } from '../OrdersBoard';
+import { Container } from './styles';
+
+const orders = {
+  waiting: [
+    {
+      table: 'Mesa 4',
+      quantity: 2,
+    },
+    {
+      table: 'Mesa 7',
+      quantity: 1,
+    },
+    {
+      table: 'Mesa 1',
+      quantity: 5,
+    },
+  ],
+  inProduction: [
+    {
+      table: 'Mesa 5',
+      quantity: 5,
+    },
+  ],
+  done: [
+    {
+      table: 'Mesa 8',
+      quantity: 2,
+    },
+    {
+      table: 'Mesa 2',
+      quantity: 1,
+    },
+  ],
+};
 
 export function Orders() {
   return (
     <Container>
-      <Board>
-        <header>
-          <span>⏰</span>
-          <strong>Fila de espera</strong>
-          <span>(1)</span>
-        </header>
-
-        <OrdersContainer>
-          <button type="button">
-            <strong>Mesa 4</strong>
-            <span>2 itens</span>
-          </button>
-          <button type="button">
-            <strong>Mesa 7</strong>
-            <span>1 itens</span>
-          </button>
-          <button type="button">
-            <strong>Mesa 1</strong>
-            <span>5 itens</span>
-          </button>
-        </OrdersContainer>
-      </Board>
-
-      <Board>
-        <header>
-          <span>🧑‍🍳</span>
-          <strong>Em produção</strong>
-          <span>(1)</span>
-        </header>
-
-        <OrdersContainer>
-          <button type="button">
-            <strong>Mesa 5</strong>
-            <span>5 itens</span>
-          </button>
-        </OrdersContainer>
-      </Board>
-
-      <Board>
-        <header>
-          <span>✅</span>
-          <strong>Pronto</strong>
-          <span>(2)</span>
-        </header>
-
-        <OrdersContainer>
-          <button type="button">
-            <strong>Mesa 8</strong>
-            <span>2 itens</span>
-          </button>
-          <button type="button">
-            <strong>Mesa 2</strong>
-            <span>1 itens</span>
-          </button>
-        </OrdersContainer>
-      </Board>
+      <OrdersBoard title="Fila de espera" icon="⏰" orders={orders.waiting} />
+      <OrdersBoard title="Em preparação" icon="👨‍🍳" orders={orders.inProduction} />
+      <OrdersBoard title="Pronto!" icon="✅" orders={orders.done} />
     </Container>
   );
 }
