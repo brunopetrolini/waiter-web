@@ -1,9 +1,5 @@
+import type { Order } from '../../types/order';
 import { Board, OrdersContainer } from './styles';
-
-interface Order {
-  table: string;
-  quantity: number;
-}
 
 interface OrdersBoardProps {
   icon: string;
@@ -24,7 +20,9 @@ export function OrdersBoard({ icon, title, orders }: OrdersBoardProps) {
         {orders.map((order) => (
           <button type="button">
             <strong>{order.table}</strong>
-            <span>{order.quantity !== 1 ? `${order.quantity} itens` : `${order.quantity} item`}</span>
+            <span>
+              {order.products.length !== 1 ? `${order.products.length} itens` : `${order.products.length} item`}
+            </span>
           </button>
         ))}
       </OrdersContainer>
