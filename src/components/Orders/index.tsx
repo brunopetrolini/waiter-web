@@ -13,7 +13,7 @@ const orders: Order[] = [
         quantity: 2,
         product: {
           name: 'Pizza de calabresa',
-          imagePath: 'https://via.placeholder.com/120',
+          imagePath: 'https://placehold.co/50',
           price: 20,
         },
       },
@@ -29,7 +29,7 @@ const orders: Order[] = [
         quantity: 2,
         product: {
           name: 'Pizza de calabresa',
-          imagePath: 'https://via.placeholder.com/120',
+          imagePath: 'https://placehold.co/50',
           price: 20,
         },
       },
@@ -45,7 +45,7 @@ const orders: Order[] = [
         quantity: 2,
         product: {
           name: 'Pizza de calabresa',
-          imagePath: 'https://via.placeholder.com/120',
+          imagePath: 'https://placehold.co/50',
           price: 20,
         },
       },
@@ -61,7 +61,7 @@ const orders: Order[] = [
         quantity: 2,
         product: {
           name: 'Pizza de calabresa',
-          imagePath: 'https://via.placeholder.com/120',
+          imagePath: 'https://placehold.co/50',
           price: 20,
         },
       },
@@ -77,7 +77,7 @@ const orders: Order[] = [
         quantity: 2,
         product: {
           name: 'Pizza de calabresa',
-          imagePath: 'https://via.placeholder.com/120',
+          imagePath: 'https://placehold.co/50',
           price: 20,
         },
       },
@@ -93,7 +93,7 @@ const orders: Order[] = [
         quantity: 2,
         product: {
           name: 'Pizza de calabresa',
-          imagePath: 'https://via.placeholder.com/120',
+          imagePath: 'https://placehold.co/50',
           price: 20,
         },
       },

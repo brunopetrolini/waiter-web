@@ -6,7 +6,7 @@ export const Board = styled.div`
   border-radius: 16px;
   flex: 1;
 
-  header {
+  > header {
     padding: 8px;
     font-size: 14px;
     display: flex;
@@ -33,6 +33,8 @@ export const OrdersContainer = styled.div`
     align-items: center;
     gap: 4px;
 
+    transition: box-shadow 0.2s ease;
+
     strong {
       font-weight: 500;
     }
@@ -44,6 +46,14 @@ export const OrdersContainer = styled.div`
 
     & + button {
       margin-top: 24px;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+    }
+
+    &:active {
+      box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
     }
   }
 `;
