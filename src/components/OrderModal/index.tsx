@@ -1,7 +1,7 @@
 import closeIcon from '../../assets/images/close-icon.svg';
 import { Order } from '../../types/order';
 import { formatCurrency } from '../../utils/format-currency';
-import { Container, OrderDetails, Overlay } from './styles';
+import { Actions, Container, OrderDetails, Overlay } from './styles';
 
 interface OrderModalProps {
   order: Order | null;
@@ -17,6 +17,8 @@ export function OrderModal({ onClose, order, visible = false }: OrderModalProps)
     IN_PRODUCTION: { icon: '👩‍🍳', label: 'Em produção' },
     DONE: { icon: '✅', label: 'Pronto!' },
   };
+
+  const total = order.products.reduce((total, { product, quantity }) => total + product.price * quantity, 0);
 
   return (
     <Overlay>
@@ -54,13 +56,20 @@ export function OrderModal({ onClose, order, visible = false }: OrderModalProps)
 
           <div className="total">
             <span>Total</span>
-            <strong>
-              {formatCurrency(
-                order.products.reduce((total, { product, quantity }) => total + product.price * quantity, 0)
-              )}
-            </strong>
+            <strong>{formatCurrency(total)}</strong>
           </div>
         </OrderDetails>
+
+        <Actions>
+          <button type="button" className="primary">
+            <span>👩‍🍳</span>
+            <strong>Iniciar produção</strong>
+          </button>
+
+          <button type="button" className="secondary">
+            <strong>Cancelar pedido</strong>
+          </button>
+        </Actions>
       </Container>
     </Overlay>
   );

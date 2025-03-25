@@ -116,3 +116,41 @@ export const OrderDetails = styled.div`
     }
   }
 `;
+
+export const Actions = styled.footer`
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+
+  .primary {
+    background: #333;
+    border-radius: 48px;
+    border: 0;
+    color: #fff;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #444;
+    }
+  }
+
+  .secondary {
+    padding: 14px 24px;
+    color: #d73035;
+    border: 0;
+    background: transparent;
+    margin-top: 12px;
+
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #b72930;
+    }
+  }
+`;
