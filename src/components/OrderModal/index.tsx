@@ -1,5 +1,6 @@
 import closeIcon from '../../assets/images/close-icon.svg';
 import { Order } from '../../types/order';
+import { BASE_URL } from '../../utils/api';
 import { formatCurrency } from '../../utils/format-currency';
 import { Actions, Container, OrderDetails, Overlay } from './styles';
 
@@ -44,7 +45,7 @@ export function OrderModal({ onClose, order, visible = false }: OrderModalProps)
           <div className="order-items">
             {order.products.map(({ _id, product, quantity }) => (
               <div className="item" key={_id}>
-                <img src={product.imagePath} alt={product.name} />
+                <img src={`${BASE_URL}/uploads/${product.imagePath}`} alt={product.name} />
                 <span className="quantity">{quantity}x</span>
                 <div className="product-details">
                   <strong>{product.name}</strong>
