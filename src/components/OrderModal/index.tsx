@@ -7,16 +7,23 @@ import { Actions, Container, OrderDetails, Overlay } from './styles';
 interface OrderModalProps {
   order: Order | null;
   onClose: () => void;
+  onCancelOrder: () => Promise<void>;
+  isLoading: boolean;
   visible?: boolean;
 }
 
-export function OrderModal({ onClose, order, visible = false }: OrderModalProps) {
+export function OrderModal({ onClose, onCancelOrder, order, isLoading, visible = false }: OrderModalProps) {
   if (!visible || !order) return null;
 
   const orderStatus = {
     WAITING: { icon: '⏰', label: 'Fila de espera' },
     IN_PRODUCTION: { icon: '👩‍🍳', label: 'Em produção' },
     DONE: { icon: '✅', label: 'Pronto!' },
+  };
+
+  const statusChange = {
+    WAITING: { icon: '👩‍🍳', label: 'Iniciar produção' },
+    IN_PRODUCTION: { icon: '✅', label: 'Finalizar pedido' },
   };
 
   const total = order.products.reduce((total, { product, quantity }) => total + product.price * quantity, 0);
@@ -62,12 +69,14 @@ export function OrderModal({ onClose, order, visible = false }: OrderModalProps)
         </OrderDetails>
 
         <Actions>
-          <button type="button" className="primary">
-            <span>👩‍🍳</span>
-            <strong>Iniciar produção</strong>
-          </button>
+          {order.status !== 'DONE' && (
+            <button type="button" className="primary" disabled={isLoading}>
+              <span>{statusChange[order.status]['icon']}</span>
+              <strong>{statusChange[order.status]['label']}</strong>
+            </button>
+          )}
 
-          <button type="button" className="secondary">
+          <button type="button" className="secondary" onClick={onCancelOrder} disabled={isLoading}>
             <strong>Cancelar pedido</strong>
           </button>
         </Actions>
