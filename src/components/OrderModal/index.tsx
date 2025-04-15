@@ -8,11 +8,19 @@ interface OrderModalProps {
   order: Order | null;
   onClose: () => void;
   onCancelOrder: () => Promise<void>;
+  onChangeOrderStatus: () => Promise<void>;
   isLoading: boolean;
   visible?: boolean;
 }
 
-export function OrderModal({ onClose, onCancelOrder, order, isLoading, visible = false }: OrderModalProps) {
+export function OrderModal({
+  onClose,
+  onCancelOrder,
+  onChangeOrderStatus,
+  order,
+  isLoading,
+  visible = false,
+}: OrderModalProps) {
   if (!visible || !order) return null;
 
   const orderStatus = {
@@ -70,7 +78,7 @@ export function OrderModal({ onClose, onCancelOrder, order, isLoading, visible =
 
         <Actions>
           {order.status !== 'DONE' && (
-            <button type="button" className="primary" disabled={isLoading}>
+            <button type="button" className="primary" onClick={onChangeOrderStatus} disabled={isLoading}>
               <span>{statusChange[order.status]['icon']}</span>
               <strong>{statusChange[order.status]['label']}</strong>
             </button>
