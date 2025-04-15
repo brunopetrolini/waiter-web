@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Socket from 'socket.io-client';
 
 import type { Order } from '../../types/order';
-import { api } from '../../utils/api';
+import { api, BASE_URL } from '../../utils/api';
 import { OrdersBoard } from '../OrdersBoard';
 import { Container } from './styles';
 
@@ -20,6 +21,20 @@ export function Orders() {
       console.error(error);
       toast.error('Erro ao buscar pedidos');
     }
+  }, []);
+
+  useEffect(() => {
+    const socket = Socket(BASE_URL, {
+      transports: ['websocket'],
+    });
+
+    socket.on('orders@new', (order: Order) => {
+      setOrders((prevState) => prevState.concat(order));
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   function handleCancelOrder(orderId: string) {
